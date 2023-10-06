@@ -28,6 +28,9 @@ router.get("/", usuariosGet);
 router.post(
   "/",
   [
+    validarJWT,
+    // esAdminRol,
+    tieneRole('ADMIN_ROLE'),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check(
       "password",

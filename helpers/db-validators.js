@@ -8,10 +8,10 @@ const esRolValido = async (rol = "") => {
   }
 };
 
-const usernameExiste = async (email = "") => {
-  const usernameExiste = await Usuario.findOne({ email });
+const usernameExiste = async (username = "") => {
+  const usernameExiste = await Usuario.findOne({ username });
   if (usernameExiste) {
-    throw new Error(`El correo: ${username} ya a sido registrado`);
+    throw new Error(`El usuario: ${username} ya a sido registrado`);
   }
 };
 

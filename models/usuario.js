@@ -7,7 +7,7 @@ const UsuarioSchema = Schema({
   },
   username: {
     type: String,
-    require: [true, "El username es obligatorio"],
+    require: [true, "El nombre de usuario es obligatorio"],
     unique: true,
   },
   password: {
