@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
 
-const { esRolValido, existeUsuarioID } = require("../helpers/db-validators");
+const { esRolValido, existeUsuarioID, existeClienteID } = require("../helpers/db-validators");
 
 const { clientesGet, clientesPost, clientesPut, clientesDelete } = require("../controllers/cliente");
 
@@ -46,7 +46,7 @@ router.delete(
     // esAdminRol,
     tieneRole('ADMIN_ROLE'),
     check("id", "No es un ID valido").isMongoId(),
-    check("id").custom(existeUsuarioID),
+    check("id").custom(existeClienteID),
     validarCampos,
   ],
   clientesDelete
