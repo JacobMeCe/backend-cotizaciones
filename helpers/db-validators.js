@@ -1,3 +1,4 @@
+const Cliente = require("../models/cliente");
 const Role = require("../models/role");
 const Usuario = require("../models/usuario");
 
@@ -22,8 +23,16 @@ const existeUsuarioID = async ( id ) => {
   }
 };
 
+const existeClienteID = async ( id ) => {
+  const existeCliente = await Cliente.findById(id);
+  if (!existeCliente) {
+    throw new Error(`El id no existe: ${id}`);
+  }
+};
+
 module.exports = {
   esRolValido,
   usernameExiste,
   existeUsuarioID,
+  existeClienteID
 };
