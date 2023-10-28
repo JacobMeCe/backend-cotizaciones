@@ -17,6 +17,17 @@ const clientesGet = async (req, res = response) => {
   });
 };
 
+const clientesGetById = async (req, res = response) => {
+  const { id } = req.params;
+  const cliente = await Cliente.findById(id);
+  if (!cliente) {
+    return res.status(404).json({
+      msg: "Cliente no encontrado",
+    });
+  }
+  res.json(cliente);
+};
+
 const clientesPost = async (req, res = response) => {
   const { nombre, domicilio, celular, email } = req.body;
   const cliente = new Cliente({ nombre, domicilio, celular, email });
@@ -46,6 +57,7 @@ const clientesDelete = async (req, res = response) => {
 
 module.exports = {
   clientesGet,
+  clientesGetById,
   clientesPut,
   clientesPost,
   clientesDelete,
