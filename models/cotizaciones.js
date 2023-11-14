@@ -10,6 +10,10 @@ const MaterialEnCotizacionSchema = new Schema({
     type: Number,
     require: [true, "La medida es obligatoria"],
   },
+  precioUsado: {
+    type: Number,
+    require: [true, "El precio es obligatorio"],
+  },
 });
 
 const CotizacionSchema = Schema({

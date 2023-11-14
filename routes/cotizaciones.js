@@ -7,6 +7,7 @@ const {
   cotizacionesPost,
   cotizacionesPut,
   cotizacionesDelete,
+  cotizacionExportarPDF,
 } = require("../controllers/cotizaciones");
 
 const {
@@ -24,6 +25,17 @@ router.get(
   "/:id",
   [check("id", "No es un ID valido").isMongoId(), validarCampos],
   cotizacionGetById
+);
+
+router.get(
+  "/:id/exportarpdf",
+  [
+    validarJWT,
+    tieneRole("ADMIN_ROLE"),
+    check("id", "No es un ID valido").isMongoId(),
+    validarCampos,
+  ],
+  cotizacionExportarPDF
 );
 
 router.post(
@@ -56,7 +68,7 @@ router.delete(
   "/:id",
   [
     validarJWT,
-    esAdminRol,
+    tieneRole("ADMIN_ROLE"),
     check("id", "No es un ID valido").isMongoId(),
     validarCampos,
   ],
